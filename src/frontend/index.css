@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fraunces display font (serif, expressive) ── */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Crimson Pro body font (elegant serif) ── */
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("/assets/fonts/CrimsonPro.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── General Sans utility font ── */
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* ── Warm amber-terracotta-espresso palette ── */
+    /* Background: warm cream parchment */
+    --background: 0.97 0.012 72;
+    /* Foreground: deep espresso brown */
+    --foreground: 0.18 0.04 45;
+    /* Card: slightly warmer cream */
+    --card: 0.94 0.018 70;
+    --card-foreground: 0.18 0.04 45;
+    /* Popover */
+    --popover: 0.97 0.012 72;
+    --popover-foreground: 0.18 0.04 45;
+    /* Primary: rich terracotta amber */
+    --primary: 0.52 0.16 45;
+    --primary-foreground: 0.97 0.01 72;
+    /* Secondary: warm muted sand */
+    --secondary: 0.88 0.025 65;
+    --secondary-foreground: 0.25 0.05 40;
+    /* Muted: soft warm grey */
+    --muted: 0.91 0.015 68;
+    --muted-foreground: 0.45 0.04 50;
+    /* Accent: deep terracotta red */
+    --accent: 0.55 0.18 38;
+    --accent-foreground: 0.97 0.01 72;
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    /* Border: warm sand */
+    --border: 0.84 0.03 62;
+    --input: 0.84 0.03 62;
+    --ring: 0.52 0.16 45;
+
+    /* Custom restaurant tokens */
+    --gold: 0.72 0.14 76;
+    --espresso: 0.18 0.04 45;
+    --terracotta: 0.52 0.16 45;
+    --cream: 0.97 0.012 72;
+    --sand: 0.88 0.025 65;
+
+    /* Chart */
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    /* Sidebar */
+    --sidebar: 0.94 0.018 70;
+    --sidebar-foreground: 0.18 0.04 45;
+    --sidebar-primary: 0.52 0.16 45;
+    --sidebar-primary-foreground: 0.97 0.01 72;
+    --sidebar-accent: 0.88 0.025 65;
+    --sidebar-accent-foreground: 0.25 0.05 40;
+    --sidebar-border: 0.84 0.03 62;
+    --sidebar-ring: 0.52 0.16 45;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Crimson Pro", Georgia, serif;
+  }
+}
+
+/* ── Noise texture overlay utility ── */
+@layer utilities {
+  .noise-bg {
+    position: relative;
+  }
+  .noise-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.04;
+    z-index: 1;
+  }
+}
+
+/* ── Decorative divider ── */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: oklch(var(--gold));
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    oklch(var(--gold) / 0.6),
+    transparent
+  );
+}
