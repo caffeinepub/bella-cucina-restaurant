@@ -2,91 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Fraunces display font (serif, expressive) ── */
+/* ── Bricolage Grotesque display font (bold, expressive) ── */
 @font-face {
-  font-family: "Fraunces";
-  src: url("/assets/fonts/Fraunces.woff2") format("woff2");
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Cabinet Grotesk heading font ── */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
-/* ── Crimson Pro body font (elegant serif) ── */
+/* ── Outfit body/UI font ── */
 @font-face {
-  font-family: "Crimson Pro";
-  src: url("/assets/fonts/CrimsonPro.woff2") format("woff2");
-  font-weight: 200 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ── General Sans utility font ── */
-@font-face {
-  font-family: "General Sans";
-  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
-  font-weight: 200 700;
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @layer base {
   :root {
-    --radius: 0.25rem;
+    --radius: 0.125rem;
 
-    /* ── Warm amber-terracotta-espresso palette ── */
-    /* Background: warm cream parchment */
-    --background: 0.97 0.012 72;
-    /* Foreground: deep espresso brown */
-    --foreground: 0.18 0.04 45;
-    /* Card: slightly warmer cream */
-    --card: 0.94 0.018 70;
-    --card-foreground: 0.18 0.04 45;
+    /* ── Dark gym palette — near-black + fire orange ── */
+    /* Background: near-black charcoal */
+    --background: 0.12 0.01 260;
+    /* Foreground: off-white */
+    --foreground: 0.94 0.008 80;
+    /* Card: elevated dark surface */
+    --card: 0.17 0.015 260;
+    --card-foreground: 0.94 0.008 80;
     /* Popover */
-    --popover: 0.97 0.012 72;
-    --popover-foreground: 0.18 0.04 45;
-    /* Primary: rich terracotta amber */
-    --primary: 0.52 0.16 45;
-    --primary-foreground: 0.97 0.01 72;
-    /* Secondary: warm muted sand */
-    --secondary: 0.88 0.025 65;
-    --secondary-foreground: 0.25 0.05 40;
-    /* Muted: soft warm grey */
-    --muted: 0.91 0.015 68;
-    --muted-foreground: 0.45 0.04 50;
-    /* Accent: deep terracotta red */
-    --accent: 0.55 0.18 38;
-    --accent-foreground: 0.97 0.01 72;
+    --popover: 0.14 0.012 260;
+    --popover-foreground: 0.94 0.008 80;
+    /* Primary: vivid fire orange */
+    --primary: 0.68 0.21 42;
+    --primary-foreground: 0.08 0.008 260;
+    /* Secondary: steel grey */
+    --secondary: 0.22 0.012 260;
+    --secondary-foreground: 0.88 0.008 80;
+    /* Muted: dark muted surface */
+    --muted: 0.2 0.01 260;
+    --muted-foreground: 0.58 0.02 80;
+    /* Accent: deep amber */
+    --accent: 0.62 0.19 52;
+    --accent-foreground: 0.08 0.008 260;
     /* Destructive */
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
-    /* Border: warm sand */
-    --border: 0.84 0.03 62;
-    --input: 0.84 0.03 62;
-    --ring: 0.52 0.16 45;
+    /* Border: subtle dark steel */
+    --border: 0.25 0.015 260;
+    --input: 0.25 0.015 260;
+    --ring: 0.68 0.21 42;
 
-    /* Custom restaurant tokens */
-    --gold: 0.72 0.14 76;
-    --espresso: 0.18 0.04 45;
-    --terracotta: 0.52 0.16 45;
-    --cream: 0.97 0.012 72;
-    --sand: 0.88 0.025 65;
+    /* Hercules Gym brand tokens */
+    --fire: 0.68 0.21 42;
+    --ember: 0.58 0.19 38;
+    --iron: 0.22 0.012 260;
+    --steel: 0.35 0.02 260;
+    --carbon: 0.12 0.01 260;
+    --ash: 0.78 0.01 260;
+    --chalk: 0.94 0.008 80;
 
-    /* Chart */
-    --chart-1: 0.646 0.222 41.116;
-    --chart-2: 0.6 0.118 184.704;
-    --chart-3: 0.398 0.07 227.392;
-    --chart-4: 0.828 0.189 84.429;
-    --chart-5: 0.769 0.188 70.08;
+    /* Charts */
+    --chart-1: 0.68 0.21 42;
+    --chart-2: 0.6 0.15 50;
+    --chart-3: 0.5 0.12 60;
+    --chart-4: 0.4 0.09 70;
+    --chart-5: 0.3 0.06 80;
 
     /* Sidebar */
-    --sidebar: 0.94 0.018 70;
-    --sidebar-foreground: 0.18 0.04 45;
-    --sidebar-primary: 0.52 0.16 45;
-    --sidebar-primary-foreground: 0.97 0.01 72;
-    --sidebar-accent: 0.88 0.025 65;
-    --sidebar-accent-foreground: 0.25 0.05 40;
-    --sidebar-border: 0.84 0.03 62;
-    --sidebar-ring: 0.52 0.16 45;
+    --sidebar: 0.14 0.012 260;
+    --sidebar-foreground: 0.94 0.008 80;
+    --sidebar-primary: 0.68 0.21 42;
+    --sidebar-primary-foreground: 0.08 0.008 260;
+    --sidebar-accent: 0.22 0.012 260;
+    --sidebar-accent-foreground: 0.88 0.008 80;
+    --sidebar-border: 0.25 0.015 260;
+    --sidebar-ring: 0.68 0.21 42;
   }
 
   * {
@@ -95,46 +97,74 @@
 
   html {
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Crimson Pro", Georgia, serif;
+    font-family: "Outfit", system-ui, sans-serif;
   }
 }
 
-/* ── Noise texture overlay utility ── */
+/* ── Fire glow box shadow utility ── */
 @layer utilities {
-  .noise-bg {
-    position: relative;
+  .shadow-fire {
+    box-shadow: 0 4px 24px -4px oklch(0.68 0.21 42 / 0.35);
   }
-  .noise-bg::after {
+  .shadow-fire-lg {
+    box-shadow: 0 12px 48px -8px oklch(0.68 0.21 42 / 0.45);
+  }
+  .shadow-iron {
+    box-shadow: 0 4px 20px -4px oklch(0 0 0 / 0.5);
+  }
+  .text-shadow-glow {
+    text-shadow: 0 0 40px oklch(0.68 0.21 42 / 0.4);
+  }
+}
+
+/* ── Animated pulse ring for WhatsApp ── */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.58 0.2 155 / 0.6); }
+  70% { box-shadow: 0 0 0 14px oklch(0.58 0.2 155 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.58 0.2 155 / 0); }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ── Noise texture overlay ── */
+@layer utilities {
+  .noise-overlay::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
     pointer-events: none;
-    opacity: 0.04;
-    z-index: 1;
+    z-index: 0;
   }
 }
 
-/* ── Decorative divider ── */
-.ornament-divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: oklch(var(--gold));
+/* ── Section label style ── */
+.gym-label {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: oklch(var(--fire));
 }
-.ornament-divider::before,
-.ornament-divider::after {
+
+/* ── Diagonal cut line decoration ── */
+.cut-line {
+  position: relative;
+}
+.cut-line::after {
   content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    oklch(var(--gold) / 0.6),
-    transparent
-  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, oklch(var(--fire)), oklch(var(--ember) / 0));
 }

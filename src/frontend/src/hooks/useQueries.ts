@@ -1,26 +1,34 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import type { RestaurantInfo } from "../backend.d";
+import { useMutation } from "@tanstack/react-query";
 import { useActor } from "./useActor";
 
-export function useRestaurantInfo() {
-  const { actor, isFetching } = useActor();
-  return useQuery<RestaurantInfo>({
-    queryKey: ["restaurantInfo"],
-    queryFn: async () => {
-      if (!actor) {
-        return {
-          name: "Bella Cucina",
-          tagline: "Authentic Flavors, Timeless Tradition",
-          address: "123 Trattoria Lane, Rome District",
-          phone: "+1 (555) 012-3456",
-          email: "hello@bellacucina.com",
-          openingHours: "Mon–Sun: 11:00 AM – 10:00 PM",
-        };
-      }
-      return actor.getRestaurantInfo();
+export function useSubmitBooking() {
+  const { actor } = useActor();
+  return useMutation({
+    mutationFn: async ({
+      name,
+      email,
+      phone,
+      preferredDate,
+      serviceType,
+      message,
+    }: {
+      name: string;
+      email: string;
+      phone: string;
+      preferredDate: string;
+      serviceType: string;
+      message: string;
+    }) => {
+      if (!actor) throw new Error("Not connected");
+      return actor.submitBooking(
+        name,
+        email,
+        phone,
+        preferredDate,
+        serviceType,
+        message,
+      );
     },
-    enabled: !isFetching,
-    staleTime: 1000 * 60 * 5,
   });
 }
 
@@ -30,14 +38,16 @@ export function useSubmitContactMessage() {
     mutationFn: async ({
       name,
       email,
+      phone,
       message,
     }: {
       name: string;
       email: string;
+      phone: string;
       message: string;
     }) => {
       if (!actor) throw new Error("Not connected");
-      return actor.submitContactMessage(name, email, message);
+      return actor.submitContactMessage(name, email, phone, message);
     },
   });
 }

@@ -8,57 +8,67 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const Booking = IDL.Record({
+  'serviceType' : IDL.Text,
+  'name' : IDL.Text,
+  'email' : IDL.Text,
+  'message' : IDL.Text,
+  'preferredDate' : IDL.Text,
+  'phone' : IDL.Text,
+});
 export const ContactMessage = IDL.Record({
   'name' : IDL.Text,
   'email' : IDL.Text,
   'message' : IDL.Text,
-});
-export const RestaurantInfo = IDL.Record({
-  'tagline' : IDL.Text,
-  'name' : IDL.Text,
-  'email' : IDL.Text,
-  'address' : IDL.Text,
-  'openingHours' : IDL.Text,
   'phone' : IDL.Text,
 });
 
 export const idlService = IDL.Service({
+  'getBookings' : IDL.Func([], [IDL.Vec(Booking)], ['query']),
   'getContactMessages' : IDL.Func([], [IDL.Vec(ContactMessage)], ['query']),
-  'getRestaurantInfo' : IDL.Func([], [RestaurantInfo], ['query']),
-  'setRestaurantInfo' : IDL.Func(
+  'submitBooking' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
       [],
       [],
     ),
-  'submitContactMessage' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
+  'submitContactMessage' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [],
+      [],
+    ),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const Booking = IDL.Record({
+    'serviceType' : IDL.Text,
+    'name' : IDL.Text,
+    'email' : IDL.Text,
+    'message' : IDL.Text,
+    'preferredDate' : IDL.Text,
+    'phone' : IDL.Text,
+  });
   const ContactMessage = IDL.Record({
     'name' : IDL.Text,
     'email' : IDL.Text,
     'message' : IDL.Text,
-  });
-  const RestaurantInfo = IDL.Record({
-    'tagline' : IDL.Text,
-    'name' : IDL.Text,
-    'email' : IDL.Text,
-    'address' : IDL.Text,
-    'openingHours' : IDL.Text,
     'phone' : IDL.Text,
   });
   
   return IDL.Service({
+    'getBookings' : IDL.Func([], [IDL.Vec(Booking)], ['query']),
     'getContactMessages' : IDL.Func([], [IDL.Vec(ContactMessage)], ['query']),
-    'getRestaurantInfo' : IDL.Func([], [RestaurantInfo], ['query']),
-    'setRestaurantInfo' : IDL.Func(
+    'submitBooking' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
         [],
         [],
       ),
-    'submitContactMessage' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [], []),
+    'submitContactMessage' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [],
+        [],
+      ),
   });
 };
 

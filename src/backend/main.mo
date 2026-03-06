@@ -1,48 +1,55 @@
 import List "mo:core/List";
-import Runtime "mo:core/Runtime";
+import Migration "migration";
 
+(with migration = Migration.run)
 actor {
-  type RestaurantInfo = {
+  type Booking = {
     name : Text;
-    tagline : Text;
-    address : Text;
-    phone : Text;
     email : Text;
-    openingHours : Text;
+    phone : Text;
+    preferredDate : Text;
+    serviceType : Text;
+    message : Text;
   };
 
   type ContactMessage = {
     name : Text;
     email : Text;
+    phone : Text;
     message : Text;
   };
 
+  let bookings = List.empty<Booking>();
   let contactMessages = List.empty<ContactMessage>();
 
-  var restaurant : ?RestaurantInfo = null;
-
-  public shared ({ caller }) func setRestaurantInfo(name : Text, tagline : Text, address : Text, phone : Text, email : Text, openingHours : Text) : async () {
-    restaurant := ?{
+  public shared ({ caller }) func submitBooking(
+    name : Text,
+    email : Text,
+    phone : Text,
+    preferredDate : Text,
+    serviceType : Text,
+    message : Text,
+  ) : async () {
+    let newBooking : Booking = {
       name;
-      tagline;
-      address;
-      phone;
       email;
-      openingHours;
+      phone;
+      preferredDate;
+      serviceType;
+      message;
     };
+    bookings.add(newBooking);
   };
 
-  public query ({ caller }) func getRestaurantInfo() : async RestaurantInfo {
-    switch (restaurant) {
-      case (null) { Runtime.trap("Restaurant info is not set.") };
-      case (?info) { info };
-    };
+  public query ({ caller }) func getBookings() : async [Booking] {
+    bookings.toArray();
   };
 
-  public shared ({ caller }) func submitContactMessage(name : Text, email : Text, message : Text) : async () {
+  public shared ({ caller }) func submitContactMessage(name : Text, email : Text, phone : Text, message : Text) : async () {
     let newMessage : ContactMessage = {
       name;
       email;
+      phone;
       message;
     };
     contactMessages.add(newMessage);

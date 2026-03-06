@@ -16,9 +16,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Fraunces", "Georgia", "serif"],
-        body: ["Crimson Pro", "Georgia", "serif"],
-        sans: ["General Sans", "system-ui", "sans-serif"],
+        display: ["Bricolage Grotesque", "Cabinet Grotesk", "system-ui", "sans-serif"],
+        heading: ["Cabinet Grotesk", "system-ui", "sans-serif"],
+        sans: ["Outfit", "system-ui", "sans-serif"],
+        body: ["Outfit", "system-ui", "sans-serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -71,12 +72,14 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        // Restaurant brand tokens
-        gold: "oklch(var(--gold))",
-        espresso: "oklch(var(--espresso))",
-        terracotta: "oklch(var(--terracotta))",
-        cream: "oklch(var(--cream))",
-        sand: "oklch(var(--sand))",
+        // Hercules Gym brand tokens
+        fire: "oklch(var(--fire))",
+        ember: "oklch(var(--ember))",
+        iron: "oklch(var(--iron))",
+        steel: "oklch(var(--steel))",
+        carbon: "oklch(var(--carbon))",
+        ash: "oklch(var(--ash))",
+        chalk: "oklch(var(--chalk))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -84,9 +87,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        warm: "0 4px 24px -4px oklch(0.3 0.08 45 / 0.18)",
-        "warm-lg": "0 12px 40px -8px oklch(0.3 0.08 45 / 0.25)",
+        fire: "0 4px 24px -4px oklch(0.68 0.21 42 / 0.35)",
+        "fire-lg": "0 12px 48px -8px oklch(0.68 0.21 42 / 0.45)",
+        iron: "0 4px 20px -4px oklch(0 0 0 / 0.5)",
       },
       keyframes: {
         "accordion-down": {
@@ -101,11 +104,17 @@ export default {
           from: { opacity: "0", transform: "translateY(24px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "pulse-ring": {
+          "0%": { boxShadow: "0 0 0 0 oklch(0.58 0.2 155 / 0.6)" },
+          "70%": { boxShadow: "0 0 0 14px oklch(0.58 0.2 155 / 0)" },
+          "100%": { boxShadow: "0 0 0 0 oklch(0.58 0.2 155 / 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.7s ease-out forwards",
+        "pulse-ring": "pulse-ring 2s ease-out infinite",
       },
     },
   },

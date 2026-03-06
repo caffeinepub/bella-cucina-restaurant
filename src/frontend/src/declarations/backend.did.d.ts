@@ -10,27 +10,31 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface Booking {
+  'serviceType' : string,
+  'name' : string,
+  'email' : string,
+  'message' : string,
+  'preferredDate' : string,
+  'phone' : string,
+}
 export interface ContactMessage {
   'name' : string,
   'email' : string,
   'message' : string,
-}
-export interface RestaurantInfo {
-  'tagline' : string,
-  'name' : string,
-  'email' : string,
-  'address' : string,
-  'openingHours' : string,
   'phone' : string,
 }
 export interface _SERVICE {
+  'getBookings' : ActorMethod<[], Array<Booking>>,
   'getContactMessages' : ActorMethod<[], Array<ContactMessage>>,
-  'getRestaurantInfo' : ActorMethod<[], RestaurantInfo>,
-  'setRestaurantInfo' : ActorMethod<
+  'submitBooking' : ActorMethod<
     [string, string, string, string, string, string],
     undefined
   >,
-  'submitContactMessage' : ActorMethod<[string, string, string], undefined>,
+  'submitContactMessage' : ActorMethod<
+    [string, string, string, string],
+    undefined
+  >,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];
